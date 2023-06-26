@@ -28,12 +28,12 @@ namespace PaymentCrudapp2.Controllers
             string url = "ListPayments";
             HttpResponseMessage response = client.GetAsync(url).Result; 
 
-            Debug.WriteLine("The response code is");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response code is");
+            //Debug.WriteLine(response.StatusCode);
             
             IEnumerable<PaymentDto> payments = response.Content.ReadAsAsync<IEnumerable<PaymentDto>>().Result;
-            Debug.WriteLine("Number Of Payments Recieved: ");
-            Debug.WriteLine(payments.Count());
+            //Debug.WriteLine("Number Of Payments Recieved: ");
+            //Debug.WriteLine(payments.Count());
 
             return View(payments);
         }
@@ -47,12 +47,12 @@ namespace PaymentCrudapp2.Controllers
             string url = "FindPayment/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response code is");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response code is");
+            //Debug.WriteLine(response.StatusCode);
 
             PaymentDto selectedpayments = response.Content.ReadAsAsync<PaymentDto>().Result;
-            Debug.WriteLine("Payment Recieved: ");
-            Debug.WriteLine(selectedpayments.Name);
+            //Debug.WriteLine("Payment Recieved: ");
+            //Debug.WriteLine(selectedpayments.Name);
 
             return View(selectedpayments);
         }
