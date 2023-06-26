@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using PaymentCrudapp2.Models;
+using System.Diagnostics;
 
 namespace PaymentCrudapp2.Controllers
 {
@@ -60,15 +61,20 @@ namespace PaymentCrudapp2.Controllers
         // POST: api/PaymentsData/UpdatePayment/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        public IHttpActionResult UpdatPayment(int id, Payment payment)
+        public IHttpActionResult UpdatePayment(int id, Payment payment)
         {
+            Debug.WriteLine("I have Reached the Update Payment method!");
             if (!ModelState.IsValid)
             {
+                Debug.WriteLine("Model State is Invalid");
                 return BadRequest(ModelState);
             }
 
             if (id != payment.PaymentId)
             {
+                Debug.WriteLine("ID is mismatched");
+                Debug.WriteLine("Get Parameter" + id);
+                Debug.WriteLine("Post Parameter" + payment.PaymentId);
                 return BadRequest();
             }
 
@@ -82,6 +88,7 @@ namespace PaymentCrudapp2.Controllers
             {
                 if (!PaymentExists(id))
                 {
+                    Debug.WriteLine("Payment Not found");
                     return NotFound();
                 }
                 else
@@ -89,7 +96,7 @@ namespace PaymentCrudapp2.Controllers
                     throw;
                 }
             }
-
+            Debug.WriteLine("Non of The condition triggered");
             return StatusCode(HttpStatusCode.NoContent);
         }
 

@@ -1,0 +1,8 @@
+﻿{
+  "PaymentId":9,
+  "PaymentDate": "2023-06-25",
+  "Amount": 120.00,
+  "UserId": 1,
+  "TransactionId": 2
+
+}
