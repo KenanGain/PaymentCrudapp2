@@ -17,12 +17,21 @@ namespace PaymentCrudapp2.Models
         // USER iD
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         //Transaction ID
 
         [ForeignKey("Transaction")]
         public int TransactionId { get; set; }
-        public Transaction Transaction { get; set; }
+        public virtual Transaction Transaction { get; set; }
+    }
+
+    public class PaymentDto
+    {
+        public int PaymentId { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
