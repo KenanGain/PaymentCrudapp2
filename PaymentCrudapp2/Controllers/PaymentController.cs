@@ -11,13 +11,21 @@ namespace PaymentCrudapp2.Controllers
 {
     public class PaymentController : Controller
     {
+        private static readonly HttpClient client;
+
+        static PaymentController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44372/api/PaymentsData/");
+        }
+
         // GET: Payment/List
         public ActionResult List()
         {
             //Objective: communicste with our Payment Data api to retrieve a list of payments
             //curl https://localhost:44372/api/PaymentsData/ListPayments
-            HttpClient client = new HttpClient() { };
-            string url = "https://localhost:44372/api/PaymentsData/ListPayments";
+            
+            string url = "ListPayments";
             HttpResponseMessage response = client.GetAsync(url).Result; 
 
             Debug.WriteLine("The response code is");
@@ -35,8 +43,8 @@ namespace PaymentCrudapp2.Controllers
         {
             //Objective: communicste with our Payment Data api to retrieve one payment
             //curl https://localhost:44372/api/PaymentsData/FindPayment/{id}
-            HttpClient client = new HttpClient() { };
-            string url = "https://localhost:44372/api/PaymentsData/FindPayment/"+id;
+            
+            string url = "FindPayment/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is");
