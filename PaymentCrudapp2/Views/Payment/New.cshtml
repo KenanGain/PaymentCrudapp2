@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Payment Method</h2>
+
+<form action="/Payment/Create" method="post">
+    <div>
+        <label>Amount</label>
+        <input type="number" name="Amount" />
+    </div>
+    <div>
+        <label>Date and Time</label>
+        <input type="datetime-local" name="PaymentDate" />
+    </div>
+    <div>
+        <label>UserId</label>
+        <input type="number" name="UserId" />
+    </div>
+    <div>
+        <label>TransactionId</label>
+        <input type="number" name="TransactionId" />
+    </div>
+    <div>
+        <input type="submit" value="Pay" />
+    </div>
+</form> 
+
+
+
+
+
+
+

@@ -297,6 +297,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Payment\List.cshtml" />
     <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\New.cshtml" />
+    <Content Include="Views\Payment\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

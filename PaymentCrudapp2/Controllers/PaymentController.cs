@@ -6,17 +6,20 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using PaymentCrudapp2.Models;
+using System.Web.Script.Serialization;
 
 namespace PaymentCrudapp2.Controllers
 {
     public class PaymentController : Controller
     {
         private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static PaymentController()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44372/api/PaymentsData/");
+
         }
 
         // GET: Payment/List
@@ -57,26 +60,46 @@ namespace PaymentCrudapp2.Controllers
             return View(selectedpayments);
         }
 
-        // GET: Payment/Create
-        public ActionResult Create()
+        public ActionResult Error()
+        {
+            return View();
+        }
+
+        // GET: Payment/New
+        public ActionResult New()
         {
             return View();
         }
 
         // POST: Payment/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Payment payment)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("Jason payload is: ");
+            //Objective: communicste with our Payment Data api to retrieve one payment
+            //curl -H "Content-type:application/json" -d @payment.json https://localhost:44372/api/PaymentsData/AddPayment
+            string url = "AddPayment";
 
-                return RedirectToAction("Index");
-            }
-            catch
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonpayload = jss.Serialize(payment);
+
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Errors");
+            }
+
+            
         }
 
         // GET: Payment/Edit/5
