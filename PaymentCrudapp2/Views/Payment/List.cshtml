@@ -1,0 +1,14 @@
+﻿@model IEnumerable<PaymentCrudapp2.Models.PaymentDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var payments in Model)
+{
+    <h2><a href="/Payment/Details/@payments.PaymentId">@payments.Name</a></h2>
+    <div>Payment Id :@payments.PaymentId</div>
+    <div>Amount : @payments.Amount</div>
+    <div>Date and Time : @payments.PaymentDate</div>
+    <div>Payment Method: @payments.Description</div>
+}

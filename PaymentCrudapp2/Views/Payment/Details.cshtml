@@ -1,0 +1,11 @@
+﻿@model PaymentCrudapp2.Models.PaymentDto
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Payment/List">Go Back to List</a>
+<h2>@Model.Name</h2>
+<div>Payment Id :@Model.PaymentId</div>
+<div>Amount : @Model.Amount</div>
+<div>Date and Time : @Model.PaymentDate</div>
+<div>Payment Method: @Model.Description</div>
