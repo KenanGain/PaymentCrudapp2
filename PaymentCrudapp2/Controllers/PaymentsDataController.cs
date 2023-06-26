@@ -123,7 +123,7 @@ namespace PaymentCrudapp2.Controllers
             db.Payments.Remove(payment);
             db.SaveChanges();
 
-            return Ok(payment);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
