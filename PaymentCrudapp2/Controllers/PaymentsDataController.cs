@@ -39,13 +39,22 @@ namespace PaymentCrudapp2.Controllers
         [HttpGet]
         public IHttpActionResult FindPayment(int id)
         {
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            Payment Payment = db.Payments.Find(id);
+            PaymentDto PaymentDto = new PaymentDto() {
+                PaymentId = Payment.PaymentId,
+                PaymentDate = Payment.PaymentDate,
+                Amount = Payment.Amount,
+                Name = Payment.User.Name,
+                Description = Payment.Transaction.Description
+
+            };
+
+            if (Payment == null)
             {
                 return NotFound();
             }
 
-            return Ok(payment);
+            return Ok(PaymentDto);
         }
 
         // POST: api/PaymentsData/UpdatePayment/5
